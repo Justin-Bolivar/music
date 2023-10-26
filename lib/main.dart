@@ -37,6 +37,30 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
               ),
+              // Generated code for this Text Widget...
+              const Align(
+                alignment: AlignmentDirectional(0.00, 1.00),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 80, 0, 0),
+                  child: Text(
+                    'Mona Lisa',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xFFFFFFFF),
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
+              ),
+              const Text(
+                'Dominic Fike',
+                style: TextStyle(
+                  color: Color(0xFF5E5C5C),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              )
             ],
           ),
         ),
