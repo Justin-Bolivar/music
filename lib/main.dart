@@ -81,8 +81,8 @@ class _MyAppState extends State<MyApp> {
                   padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.network(
-                      'https://upload.wikimedia.org/wikipedia/commons/a/a1/Dominic_Fike_-_Mona_Lisa.png',
+                    child: Image.asset(
+                      'assets/Dominic_Fike_-_Mona_Lisa.png',
                       width: 300,
                       height: 300,
                       fit: BoxFit.cover,
