@@ -162,7 +162,7 @@ class _MyAppState extends State<MyApp> {
                         size: 40,
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
                       child: Icon(
                         Icons.repeat,
