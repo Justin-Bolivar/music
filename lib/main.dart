@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -17,6 +17,7 @@ class _MyAppState extends State<MyApp> {
   late int currentSeconds;
   late Timer? countdownTimer;
   bool isPlaying = false;
+  bool isResetButtonTapped = false;
 
   @override
   void initState() {
@@ -61,6 +62,28 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void resetTimer() {
+    stopCountdown();
+    setState(() {
+      currentSeconds = initialSeconds;
+      isPlaying = false;
+    });
+  }
+
+  void onTapResetButton() {
+    setState(() {
+      isResetButtonTapped = true;
+    });
+
+    Future.delayed(const Duration(milliseconds: 200), () {
+      setState(() {
+        isResetButtonTapped = false;
+      });
+    });
+
+    resetTimer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -81,8 +104,8 @@ class _MyAppState extends State<MyApp> {
                   padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(
-                      'assets/Dominic_Fike_-_Mona_Lisa.png',
+                    child: Image.network(
+                      'https://upload.wikimedia.org/wikipedia/commons/a/a1/Dominic_Fike_-_Mona_Lisa.png',
                       width: 300,
                       height: 300,
                       fit: BoxFit.cover,
@@ -131,7 +154,7 @@ class _MyAppState extends State<MyApp> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
                       child: Icon(
                         Icons.favorite_border,
                         color: Color(0xFFFF0000),
@@ -139,14 +162,14 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ),
                     const Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
                       child: Icon(
                         Icons.skip_previous_rounded,
                         color: Colors.white,
                         size: 40,
                       ),
                     ),
-                    GestureDetector(
+                    InkWell(
                       onTap: togglePlayPause,
                       child: Icon(
                         isPlaying ? Icons.pause : Icons.play_arrow_rounded,
@@ -162,11 +185,13 @@ class _MyAppState extends State<MyApp> {
                         size: 40,
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                    InkWell(
+                      onTap: onTapResetButton,
                       child: Icon(
-                        Icons.repeat,
-                        color: Color(0xFF5E5C5C),
+                        Icons.refresh,
+                        color: isResetButtonTapped
+                            ? Colors.white
+                            : const Color(0xFF5E5C5C),
                         size: 24,
                       ),
                     ),
